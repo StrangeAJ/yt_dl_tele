@@ -11,6 +11,7 @@ dotenv_path = join(dirname(__file__), '.env')
 load_dotenv(dotenv_path)
 
 TOKEN = os.environ.get("TOKEN")
+print(TOKEN)
 bot = telepotpro.Bot(TOKEN)
 
 class Music:
@@ -55,7 +56,7 @@ class Chat:
     def __init__(self, msg):
         self.chat_id = msg['chat']['id']
         self.user_input = msg['text']
-        self.user_input = self.user_input.replace('@TLMusicDownloader_bot', '')
+        self.user_input = self.user_input.replace('@yyttbb_bot', '')
         self.user_name = msg['from']['first_name']
         self.message_id = msg['message_id']
 
@@ -105,7 +106,7 @@ class Chat:
         min_duration, split_count = Music.get_duration(self, result)
 
         if int(min_duration) < 30 and split_count < 3:
-            file_name = Music.get_title(self, result) +' - @TLMusicDownloader_bot '+str(randint(0,999999))+'.mp3'
+            file_name = Music.get_title(self, result) +' - @yyttbb_bot '+str(randint(0,999999))+'.mp3'
             file_name = file_name.replace('"', '')
 
             self.send_message(f"🎵 {Music.get_title(self, result)}\n🔗 {Music.get_link(self, result)}")
@@ -146,4 +147,4 @@ def start_new_chat(msg):
     Process(target=Chat, args=(msg,)).start()
     
 
-bot.message_loop(start_new_chat, run_forever=True)
+# bot.message_loop(start_new_chat, run_forever=True)
