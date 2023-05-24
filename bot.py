@@ -61,8 +61,8 @@ class Chat:
         self.message_id = msg['message_id']
 
         self.messages = {
-            'start':'🤖 Hello, '+ self.user_name +'!\n\n'
-                    '📩 Send me:\n\n'
+            'start':' Hello, '+ self.user_name +'!\n\n'
+                    ' Send me:\n\n'
                     '"*/music* _song name_"  or\n'
                     '"*/music* _musician name - song name_"\n\n'
                     'to order some music. 🎶',
@@ -109,8 +109,8 @@ class Chat:
             file_name = Music.get_title(self, result) +' - @yyttbb_bot '+str(randint(0,999999))+'.mp3'
             file_name = file_name.replace('"', '')
 
-            self.send_message(f"🎵 {Music.get_title(self, result)}\n🔗 {Music.get_link(self, result)}")
-            downloading_message = self.send_message('⬇️ Downloading... \n_(this may take a while.)_')
+            self.send_message(f" {Music.get_title(self, result)}\n {Music.get_link(self, result)}")
+            downloading_message = self.send_message('⬇ Downloading... \n_(this may take a while.)_')
 
             Music.download_music(self, file_name, Music.get_link(self, result))
 
