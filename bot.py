@@ -147,4 +147,4 @@ def start_new_chat(msg):
     Process(target=Chat, args=(msg,)).start()
     
 
-# bot.message_loop(start_new_chat, run_forever=True)
+bot.message_loop(start_new_chat, run_forever=True)
