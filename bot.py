@@ -113,7 +113,7 @@ class Chat:
             downloading_message = self.send_message('⬇️ Downloading... \n_(this may take a while.)_')
             Music.download_music(self, file_name, Music.get_link(self, result))
             try:
-                self.send_audio(file_name+'.mp3')
+                self.send_audio(file_name)
                 self.delete_message(downloading_message)
                 self.send_message('✅ Sucess!')
                 print ("\nSucess!\n")
