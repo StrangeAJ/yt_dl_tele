@@ -62,11 +62,11 @@ class Chat:
         self.message_id = msg['message_id']
 
         self.messages = {
-            'start':' Hello, '+ self.user_name +'!\n\n'
-                    ' Send me:\n\n'
+            'start':'🤖 Hello, '+ self.user_name +'!\n\n'
+                    '📩 Send me:\n\n'
                     '"*/music* _song name_"  or\n'
                     '"*/music* _musician name - song name_"\n\n'
-                    'to order some music.',
+                    'to order some music. 🎶',
             
             'spotify_input_error':"‼️ *Oops! The bot doesn't support Spotify links!*\n"
                     'Try: "*/music* _song name_"\n'
@@ -107,18 +107,18 @@ class Chat:
         min_duration, split_count = Music.get_duration(self, result)
 
         if int(min_duration) < 30 and split_count < 3:
-            file_name = Music.get_title(self, result) +' - @yyttbb_bot '+str(randint(0,999999))+'.mp3'
+            file_name = Music.get_title(self, result) +' - @yyttbb_bot '+str(randint(0,999999))
             file_name = file_name.replace('"', '')
 
-            self.send_message(f" {Music.get_title(self, result)}\n {Music.get_link(self, result)}")
-            downloading_message = self.send_message('⬇ Downloading... \n_(this may take a while.)_')
+            self.send_message(f"🎵 {Music.get_title(self, result)}\n🔗 {Music.get_link(self, result)}")
+            downloading_message = self.send_message('⬇️ Downloading... \n_(this may take a while.)_')
 
             Music.download_music(self, file_name, Music.get_link(self, result))
 
             try:
-                self.send_audio(file_name)
+                self.send_audio(file_name+'.mp3')
                 self.delete_message(downloading_message)
-                self.send_message(' Sucess!')
+                self.send_message('✅ Sucess!')
                 print ("\nSucess!\n")
             except:
                 print("\nError")
@@ -145,7 +145,7 @@ class Chat:
         pass 
 
 def start_new_chat(msg):
-    Process(target=Chat, args=(msg,)).start()
+    Chat(msg)
     
 
 bot.message_loop(start_new_chat, run_forever=True)
